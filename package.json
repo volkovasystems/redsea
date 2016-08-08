@@ -1,0 +1,30 @@
+{
+  "name": "redsea",
+  "version": "0.0.0",
+  "description": "Pool of error handlers.",
+  "main": "redsea.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/volkovasystems/redsea.git"
+  },
+  "keywords": [
+    "error",
+    "handler",
+    "pool",
+    "redsea"
+  ],
+  "author": "Richeve S. Bebedor <richeve.bebedor@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/volkovasystems/redsea/issues"
+  },
+  "homepage": "https://github.com/volkovasystems/redsea#readme",
+  "dependencies": {
+    "called": "0.0.5",
+    "harden": "^0.3.2",
+    "snapd": "0.0.1"
+  }
+}
