@@ -1,6 +1,6 @@
 {
   "name": "redsea",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Pool of error handlers.",
   "main": "redsea.js",
   "scripts": {
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/volkovasystems/redsea#readme",
   "dependencies": {
     "called": "0.0.5",
+    "exorcise": "0.0.0",
     "harden": "^0.3.2",
     "snapd": "0.0.1"
   }

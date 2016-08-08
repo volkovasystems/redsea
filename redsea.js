@@ -51,6 +51,7 @@
 	@include:
 		{
 			"called": "called",
+			"exorcise": "exorcise",
 			"harden": "harden",
 			"snapd": "snapd"
 		}
@@ -58,6 +59,7 @@
 */
 
 var called = require( "called" );
+var exorcise = require( "exorcise" );
 var harden = require( "harden" );
 var snapd = require( "snapd" );
 
@@ -115,16 +117,12 @@ harden( "handler", redsea.handler || function handler( logEngine ){
 	} );
 }, redsea );
 
-harden( "drain", redsea.drain || called( function drain( ){
+exorcise( function drain( ){
 	process.removeAllListeners( "error" );
 
 	while( redsea.pool.length ){
 		redsea.pool.pop( );
 	}
-} ), redsea );
-
-process.once( "exit", redsea.drain );
-process.once( "SIGTERM", redsea.drain );
-process.once( "SIGINT", redsea.drain );
+} );
 
 module.exports = redsea;
