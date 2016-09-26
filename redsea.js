@@ -100,7 +100,7 @@ var redsea = function redsea( logEngine ){
 harden( "pool", redsea.pool || [ ], redsea );
 
 harden( "handler", redsea.handler || function handler( logEngine ){
-	return ( function onUncaughtException( ){
+	return ( function onError( ){
 		snapd( function pushPool( ){
 			if( redsea.pool.length < 5 ){
 				redsea.pool.push( redsea.handler( logEngine ) );
