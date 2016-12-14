@@ -1,6 +1,6 @@
 {
   "name": "redsea",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Pool of error handlers.",
   "main": "redsea.js",
   "scripts": {
@@ -17,15 +17,19 @@
     "redsea"
   ],
   "author": "Richeve S. Bebedor <richeve.bebedor@gmail.com>",
+  "contributors": [
+    "John Lenon Maghanoy <johnlenonmaghanoy@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/volkovasystems/redsea/issues"
   },
   "homepage": "https://github.com/volkovasystems/redsea#readme",
   "dependencies": {
-    "called": "^0.1.2",
-    "exorcise": "0.0.2",
-    "harden": "^0.3.5",
-    "snapd": "^0.1.0"
+    "called": "^0.4.0",
+    "exorcise": "^0.1.0",
+    "harden": "^0.9.0",
+    "protype": "^0.4.0",
+    "snapd": "^0.3.0"
   }
 }
