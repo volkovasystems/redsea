@@ -1,5 +1,8 @@
-"use strict";
+
+require( "olivant" );
 
 const redsea = require( "./redsea.js" );
 
-console.log( redsea( { } ) )
+redsea( Issue );
+
+//redsea( console.log );

@@ -53,8 +53,9 @@
 
 	@include:
 		{
-			"called": "called",
+			"clazof": "clazof",
 			"exorcise": "exorcise",
+			"falzy": "falzy",
 			"harden": "harden",
 			"protype": "protype",
 			"snapd": "snapd"
@@ -62,36 +63,59 @@
 	@end-include
 */
 
-const called = require( "called" );
+const clazof = require( "clazof" );
 const exorcise = require( "exorcise" );
+const falzy = require( "falzy" );
 const harden = require( "harden" );
 const protype = require( "protype" );
 const snapd = require( "snapd" );
+
+const handler = function handler( logEngine ){
+	/*;
+		@meta-configuration:
+			{
+				"logEngine:required": Olivant
+			}
+		@end-meta-configuration
+	*/
+
+	return ( function onError( ){
+		snapd( function pushPool( ){
+			if( redsea.pool.length < 5 ){
+				redsea.pool.push( handler( logEngine ) );
+			}
+
+		} )( function registerHandler( ){
+			process.once( "error", redsea.pool.pop( ) );
+		} );
+
+		logEngine( "bad process", arguments )
+			.silence( )
+			.report( )
+			.prompt( );
+	} );
+};
 
 const redsea = function redsea( logEngine ){
 	/*;
 		@meta-configuration:
 			{
-				"logEngine:required": "Olivant"
+				"logEngine:required": Olivant
 			}
 		@end-meta-configuration
 	*/
+
+	if( falzy( logEngine ) || !clazof( logEngine, "Olivant" ) ){
+		throw new Error( "invalid log engine" );
+	}
 
 	if( protype( logEngine, OBJECT ) ){
 		logEngine = logEngine.constructor;
 	}
 
-	if( !logEngine.prototype.parent ){
-		throw new Error( "invalid log engine" );
-	}
-
-	if( logEngine.prototype.parent.name != "Olivant" ){
-		throw new Error( "invalid log engine" );
-	}
-
 	if( redsea.pool.length == 0 ){
 		while( redsea.pool.length != 5 ){
-			redsea.pool.push( redsea.handler( logEngine ) );
+			redsea.pool.push( handler( logEngine ) );
 		}
 
 		while( redsea.pool.length != 1 ){
@@ -103,24 +127,6 @@ const redsea = function redsea( logEngine ){
 };
 
 harden( "pool", redsea.pool || [ ], redsea );
-
-harden( "handler", redsea.handler || function handler( logEngine ){
-	return ( function onError( ){
-		snapd( function pushPool( ){
-			if( redsea.pool.length < 5 ){
-				redsea.pool.push( redsea.handler( logEngine ) );
-			}
-
-		} )( function registerHandler( ){
-			process.once( "error", redsea.pool.pop( ) );
-		} );
-
-		logEngine( "process", arguments )
-			.silence( )
-			.report( )
-			.prompt( );
-	} );
-}, redsea );
 
 exorcise( function drain( ){
 	process.removeAllListeners( "error" );
