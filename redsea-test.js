@@ -1,5 +1,3 @@
-"use strict";
-
 require( "olivant" );
 const assert = require( "assert" );
 const redsea = require( "./redsea.js" );
